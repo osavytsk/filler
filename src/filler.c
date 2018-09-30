@@ -18,10 +18,10 @@ t_list	*get_moves(void)
 {
 	int		x;
 	int		y;
-	t_list	*correct_moves;
+	t_list	*cor_move;
 	int		*ret;
 
-	correct_moves = NULL;
+	cor_move = NULL;
 	x = 0;
 	y = 0;
 	while (g_entity->map[x])
@@ -30,7 +30,7 @@ t_list	*get_moves(void)
 		{
 			if ((ret = can_put(x, y)))
 			{
-				ft_lstadd(&correct_moves, ft_lstnew((int[]) {ret[0], ret[1]}, 8));
+				ft_lstadd(&cor_move, ft_lstnew((int[]) {ret[0], ret[1]}, 8));
 				free(ret);
 				ret = NULL;
 			}
@@ -39,10 +39,10 @@ t_list	*get_moves(void)
 		y = 0;
 		x++;
 	}
-	return (correct_moves);
+	return (cor_move);
 }
 
-void	make_move(t_list *correct_moves)
+void	make_move(t_list *cor_move)
 {
 	t_list	*top;
 	int		best_x;
@@ -50,17 +50,17 @@ void	make_move(t_list *correct_moves)
 	int		*way;
 
 	way = get_way(0, 0, 0, 0);
-	best_x = ((int *)(correct_moves->content))[0];
-	best_y = ((int *)(correct_moves->content))[1];
-	top = correct_moves;
-	while (correct_moves)
+	best_x = ((int *)(cor_move->content))[0];
+	best_y = ((int *)(cor_move->content))[1];
+	top = cor_move;
+	while (cor_move)
 	{
-		if (is_best(correct_moves->content, best_x, best_y, way))
+		if (is_best(cor_move->content, best_x, best_y, way))
 		{
-			best_x = ((int *)correct_moves->content)[0];
-			best_y = ((int *)correct_moves->content)[1];
+			best_x = ((int *)cor_move->content)[0];
+			best_y = ((int *)cor_move->content)[1];
 		}
-		correct_moves = correct_moves->next;
+		cor_move = cor_move->next;
 	}
 	ft_printf("%d %d\n", best_x, best_y);
 	free(top);
@@ -68,16 +68,16 @@ void	make_move(t_list *correct_moves)
 
 int		game_loop(void)
 {
-	t_list *correct_moves;
+	t_list *cor_move;
 
 	get_actual_map();
-	correct_moves = get_moves();
-	if (!correct_moves)
+	cor_move = get_moves();
+	if (!cor_move)
 	{
 		ft_printf("0 0\n");
 		exit(1);
 	}
-	make_move(correct_moves);
+	make_move(cor_move);
 	free_map();
 	return (1);
 }
