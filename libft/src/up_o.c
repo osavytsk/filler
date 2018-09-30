@@ -29,7 +29,7 @@ int		up_o(va_list *arg, t_flags *flag)
 	put_uint_left_space(flag, len, nb, 3);
 	if (!(flag->prec && !flag->precision && !nb) &&
 			!(flag->sharp && !nb))
-        take_ui(nb, "012345678", 8);
+		take_ui(nb, "012345678", 8);
 	if (flag->width && flag->minus)
 		put_space(flag->width, len);
 	return ((flag->width > len) ? flag->width : len);

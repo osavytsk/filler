@@ -121,8 +121,6 @@ int					ft_isspace(int c);
 
 int					get_next_line(const int fd, char **line);
 
-
-
 /*
 **	Ft_printf part
 */

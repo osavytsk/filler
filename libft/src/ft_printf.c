@@ -86,7 +86,7 @@ int		ft_printf(const char *format, ...)
 	ret = 0;
 	flag = ft_memalloc(sizeof(t_flags));
 	va_start(arg, format);
-	ret = pars((char **) &format, flag, &arg);
+	ret = pars((char **)&format, flag, &arg);
 	va_end(arg);
 	ft_memdel((void**)&flag);
 	return (ret);
