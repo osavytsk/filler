@@ -50,6 +50,7 @@ $(NAME): $(OBJS)
 	ranlib $(NAME)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)libft.h
+	@mkdir -p $(OBJDIR)
 	$(CC) -o $@ $(FLAG) -c $< -I $(HEADER)
 
 clean:
